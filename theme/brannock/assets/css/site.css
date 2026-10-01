@@ -1,0 +1,152 @@
+/*
+ * Brannock & Daughter: the steel rule and the pencil line.
+ * A rule with millimetre ticks runs down the left edge; the steps of a job sit on a dimension line.
+ */
+:root {
+	--bd-ink: var(--wp--preset--color--bog-oak);
+	--bd-red: var(--wp--preset--color--pencil);
+	--bd-hair: var(--wp--preset--color--shaving);
+	--bd-rule: 44px;
+	--bd-g: clamp(1rem, 4vw, 3rem);
+}
+
+/* The rule: down the left edge of the whole page. Ticks every 4 px, longer every 20 px, longest every 40 px. */
+.wp-site-blocks { position: relative; padding-left: var(--bd-rule); }
+.wp-site-blocks::before {
+	content: "";
+	position: absolute;
+	top: 0; bottom: 0; left: 0;
+	width: var(--bd-rule);
+	border-right: 1px solid var(--bd-ink);
+	background-image:
+		linear-gradient(to bottom, var(--bd-ink) 0 1px, transparent 1px),
+		linear-gradient(to bottom, var(--bd-ink) 0 1px, transparent 1px),
+		linear-gradient(to bottom, var(--bd-ink) 0 1px, transparent 1px);
+	background-position: right top;
+	background-repeat: repeat-y;
+	background-size: 22px 40px, 14px 20px, 7px 4px;
+	pointer-events: none;
+}
+
+.bd-header, .kit-frame, .bd-footer {
+	max-width: 1120px;
+	margin-inline: auto;
+	padding-inline: var(--bd-g);
+}
+
+/* Header: the workshop sign. */
+.bd-header { padding-top: 1.6rem; align-items: baseline; }
+.bd-sign {
+	font-family: var(--wp--preset--font-family--barlow);
+	font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em;
+	font-size: 1.15rem; text-decoration: none; color: var(--bd-ink);
+}
+.bd-header-meta, .bd-place, .bd-trade {
+	font-family: var(--wp--preset--font-family--barlow);
+	font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em;
+	font-size: 0.95rem; margin: 0;
+}
+
+.kit-frame { padding-bottom: clamp(3rem, 7vw, 6rem); }
+.kit-frame .wp-block-post-content > * { margin-block: 0; }
+
+/* Opening */
+.bd-open { padding-block: clamp(3.5rem, 10vw, 8rem) clamp(3rem, 7vw, 5rem); max-width: 860px; }
+.bd-open > * + * { margin-top: 1.1rem; }
+.bd-place { color: var(--bd-red); }
+.bd-name {
+	font-size: clamp(3.4rem, 10.5vw, 8.4rem);
+	line-height: 0.86;
+	letter-spacing: 0.005em;
+	margin-top: 1rem !important;
+}
+.bd-trade {
+	display: flex; align-items: center; gap: 0.9rem;
+	font-size: 1.25rem; letter-spacing: 0.3em; margin-top: 1.4rem !important;
+}
+/* A pencil line drawn after the trade, ending in a cut mark. */
+.bd-trade::after {
+	content: ""; flex: 0 1 220px; height: 12px;
+	background:
+		linear-gradient(var(--bd-red), var(--bd-red)) left center / 100% 2px no-repeat,
+		linear-gradient(var(--bd-red), var(--bd-red)) right center / 2px 12px no-repeat;
+}
+.bd-lead { font-size: var(--wp--preset--font-size--large); line-height: 1.4; max-width: 34ch; margin-top: 2.2rem !important; }
+.bd-open p:not([class]) { max-width: 52ch; }
+.bd-open .wp-block-buttons { margin-top: 2rem; }
+
+/* Sections, each opened by a cut mark: a short red stroke with a tick, like a pencil mark on a board. */
+.bd-section { padding-block: clamp(2.5rem, 6vw, 4.5rem) 0; border-top: 1px solid var(--bd-hair); margin-top: clamp(2.5rem, 6vw, 4.5rem) !important; }
+.bd-open + .bd-section { margin-top: 0 !important; }
+.bd-mark { position: relative; padding-left: 2.6rem; margin-bottom: 1.8rem !important; }
+.bd-mark::before {
+	content: ""; position: absolute; left: 0; top: 50%; width: 1.8rem; height: 14px; margin-top: -7px;
+	background:
+		linear-gradient(var(--bd-red), var(--bd-red)) left center / 100% 2px no-repeat,
+		linear-gradient(var(--bd-red), var(--bd-red)) right center / 2px 14px no-repeat;
+}
+
+/* What we make: ruled rows, name left, sentence right. */
+.bd-row { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 1rem 3rem; padding-block: 1.4rem; border-bottom: 1px solid var(--bd-hair); }
+.bd-row > * { margin: 0 !important; }
+.bd-row:first-of-type { border-top: 1px solid var(--bd-hair); }
+
+/* Timber: the three names large, as stamped on a board end. */
+.bd-timbers { list-style: none; padding: 0; margin: 0 0 1.4rem !important; display: flex; flex-wrap: wrap; gap: 0.4rem 0; }
+.bd-timbers li {
+	font-family: var(--wp--preset--font-family--barlow); font-weight: 600; text-transform: uppercase;
+	font-size: clamp(2rem, 5vw, 3.4rem); line-height: 1; letter-spacing: 0.01em;
+}
+.bd-timbers li + li::before { content: "/"; color: var(--bd-red); padding: 0 0.45em; }
+.bd-rule-quote { border-left: 2px solid var(--bd-red); padding-left: 1.2rem; margin: 1.4rem 0 0; }
+.bd-rule-quote p { font-style: italic; font-size: var(--wp--preset--font-size--large); line-height: 1.4; }
+
+/* How a job runs: four spans on one dimension line, with end stops. */
+.bd-steps { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0 2rem; position: relative; padding-top: 2.4rem; }
+.bd-steps::before {
+	content: ""; position: absolute; top: 0; left: 0; right: 0; height: 18px;
+	background:
+		linear-gradient(var(--bd-red), var(--bd-red)) left center / 100% 2px no-repeat,
+		linear-gradient(var(--bd-red), var(--bd-red)) left center / 2px 18px no-repeat,
+		linear-gradient(var(--bd-red), var(--bd-red)) right center / 2px 18px no-repeat;
+}
+.bd-step { position: relative; }
+.bd-step > * { margin: 0 0 0.6rem !important; }
+.bd-step + .bd-step::before {
+	content: ""; position: absolute; top: calc(-2.4rem); left: -1rem; width: 2px; height: 18px; background: var(--bd-red);
+}
+.bd-num { font-family: var(--wp--preset--font-family--barlow); font-weight: 600; font-size: 1.1rem; color: var(--bd-red); letter-spacing: 0.1em; }
+
+/* Lead time: the one number. */
+.bd-lead-time { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); align-items: end; gap: 0 3rem; }
+.bd-lead-time .bd-mark { grid-column: 1 / -1; }
+.bd-figure {
+	font-family: var(--wp--preset--font-family--barlow); font-weight: 600;
+	font-size: clamp(4.5rem, 13vw, 9.5rem); line-height: 0.8; color: var(--bd-red); margin: 0 !important; white-space: nowrap;
+}
+.bd-figure-unit { font-size: var(--wp--preset--font-size--large); line-height: 1.3; margin: 0 0 0.4rem !important; max-width: 18ch; }
+
+.bd-visit p { max-width: 52ch; }
+
+/* Footer */
+.bd-footer { border-top: 1px solid var(--bd-ink); padding-block: 1.6rem 2.4rem; font-size: var(--wp--preset--font-size--small); gap: 0.5rem 2rem; }
+.bd-footer p { margin: 0; }
+
+/* Focus */
+:where(a, button, .wp-block-button__link):focus-visible { outline: 3px solid var(--bd-red); outline-offset: 3px; }
+
+@media (max-width: 781px) {
+	:root { --bd-rule: 22px; }
+	.wp-site-blocks::before { background-size: 12px 40px, 8px 20px, 4px 4px; }
+	.bd-row, .bd-lead-time { grid-template-columns: 1fr; }
+	.bd-steps { grid-template-columns: 1fr; padding-top: 0; padding-left: 1.6rem; gap: 1.6rem; }
+	.bd-steps::before {
+		top: 0; bottom: 0; left: 0; right: auto; width: 18px; height: auto;
+		background:
+			linear-gradient(var(--bd-red), var(--bd-red)) center top / 2px 100% no-repeat,
+			linear-gradient(var(--bd-red), var(--bd-red)) center top / 18px 2px no-repeat,
+			linear-gradient(var(--bd-red), var(--bd-red)) center bottom / 18px 2px no-repeat;
+	}
+	.bd-step + .bd-step::before { top: -0.8rem; left: calc(-1.6rem); width: 18px; height: 2px; }
+	.bd-header-meta { display: none; }
+}

@@ -2,3 +2,4 @@ node_modules/
 .DS_Store
 qa-output/
 runs/*/sources/*.html
+__pycache__/

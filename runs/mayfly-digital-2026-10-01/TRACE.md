@@ -93,3 +93,38 @@ Times are Dublin time.
   - Pass 1: on a phone the axis ran beside the centred mark and looked accidental. On small screens the line now
     starts with the first section under the hero, drawn by each section's left edge.
   - Pass 2: the mark's tail was twice as thick as the axis it turns into. Matched to 2 px.
+
+## Step 7. QA, first pass (build agent, 16:48)
+- Wrote `kit/scripts/qa_sources.py` (every rendered line must be in the sources or in the content map's allowlist)
+  and `kit/scripts/qa_site.py` (status, links, axe-core at two widths, keyboard, mobile menu, schema), and
+  `kit/seed/revise.php` for bounded changes. Ran both on the local site: all passed, LinkedIn not testable (it
+  answers 999 to scripts). The first build agent stopped here, before committing.
+
+## Step 7, continued. A second build agent takes over (19:12)
+- A second build agent (Opus 5.5, fresh context) was started by the orchestrator to finish the run. It read this
+  trace, the brief, the review and the uncommitted files before touching anything.
+- **A bug the first QA pass missed.** The header still linked to `/process/` and `/about/`, two pages removed at
+  step 5. WordPress answered with a redirect to the home page, and the link check followed redirects, so it saw a
+  200. Fixed in the header (Process goes to `/services/#process`, About to `/#about`) and in the check: internal
+  links are no longer followed through redirects, and every `#fragment` must land on an element with that id.
+  Re-run: passed. The theme readme still described the patterns-only content model of step 2: rewritten.
+- `qa_site.py` assumed every site has a menu. Made general for the second site (step 8): a site with no menu
+  reports the mobile menu check as Not tested, and the keyboard check looks for the first content link instead.
+- Screenshot of the block editor on the Home page (`qa/mayfly/screens/editor-home.png`): the seeded content is
+  ordinary paragraphs, headings and buttons in the standard editor.
+
+## Step 8. Second brief, same chain (second build agent, 19:17 to 19:23)
+- To show the kit is not Mayfly-shaped, the orchestrator asked for a second, unrelated client through the same
+  steps. Real material was not available, so it is **fictional** and labelled so on every screen:
+  Brannock & Daughter, a joinery workshop. The written brief is `runs/brannock-fictional-2026-10-01/sources/brief.md`;
+  that run has its own trace.
+- Same scripts, no Mayfly file touched: `new_theme.py` (theme from the scaffold), `seed.php`, `build_blueprint.py`,
+  `serve.sh`, `qa_sources.py`, `qa_site.py`. Site-specific work was the design plan, `theme.json`, one stylesheet,
+  four small patterns, the page content and the schema.
+
+## Step 9. Revision test (second build agent, 19:23 to 19:26)
+- `kit/scripts/test_revision.py` on the second site. A paragraph is edited in the block editor UI (Playwright
+  clicking and typing in the real editor, standing in for the client), then a change request is applied by
+  `revise.php` to another section. All eight checks passed: the edit survived, only the requested line changed,
+  WordPress kept revisions, a stale request was refused with nothing written, re-seeding left the page alone.
+  Report: `qa/brannock/revision-test.json`.

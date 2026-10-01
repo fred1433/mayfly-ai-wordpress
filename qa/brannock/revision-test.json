@@ -1,0 +1,42 @@
+[
+  {
+    "check": "person's edit saved through the block editor",
+    "result": "Passed",
+    "detail": "visit section now reads 'Monday to Saturday'"
+  },
+  {
+    "check": "change request applied",
+    "result": "Passed",
+    "detail": "OK changed section #lead-time on home: \"10 to 14\" -> \"6 to 8\" (revision kept)"
+  },
+  {
+    "check": "person's edit survived the change request",
+    "result": "Passed",
+    "detail": "still 'Monday to Saturday'"
+  },
+  {
+    "check": "nothing else on the page changed",
+    "result": "Passed",
+    "detail": "-<p class=\"bd-figure\">10 to 14</p> | +<p class=\"bd-figure\">6 to 8</p>"
+  },
+  {
+    "check": "WordPress kept revisions",
+    "result": "Passed",
+    "detail": "1 before, 3 after (one for the person's save, one for the change)"
+  },
+  {
+    "check": "stale request refused, nothing written",
+    "result": "Passed",
+    "detail": "REFUSED refused: found the current text 0 times in section #visit (expected exactly 1). Nothing written."
+  },
+  {
+    "check": "re-seeding leaves the page alone",
+    "result": "Passed",
+    "detail": "kept   home (already exists, not overwritten)"
+  },
+  {
+    "check": "public page shows both changes",
+    "result": "Passed",
+    "detail": "front page rendered after the change"
+  }
+]

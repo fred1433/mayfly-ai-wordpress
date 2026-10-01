@@ -1,0 +1,2 @@
+Edit made directly in the WordPress block editor before change request 1 arrived (simulating the client, by script):
+Workshop visits by appointment, Monday to Saturday.

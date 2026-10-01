@@ -1,0 +1,44 @@
+[
+  {
+    "check": "page /",
+    "result": "Passed",
+    "scope": "HTTP status after login",
+    "detail": "200"
+  },
+  {
+    "check": "links",
+    "result": "Passed",
+    "scope": "2 distinct links on 1 pages, internal and external",
+    "detail": "all answer 200"
+  },
+  {
+    "check": "axe / at 1440px",
+    "result": "Passed",
+    "scope": "automated WCAG 2.1 A/AA rules only",
+    "detail": "0 violations"
+  },
+  {
+    "check": "axe / at 390px",
+    "result": "Passed",
+    "scope": "automated WCAG 2.1 A/AA rules only",
+    "detail": "0 violations"
+  },
+  {
+    "check": "keyboard focus",
+    "result": "Passed",
+    "scope": "first 12 Tab stops on the home page, desktop: they reach the menu (or the first content link) with a visible outline; admin toolbar ignored",
+    "detail": "Skip to content > BRANNOCK & DAUGHTER > EMAIL THE WORKSHOP > EMAIL THE WORKSHOP > hello@brannock.example > hello@brannock.example > Skip to content > BRANNOCK & DAUGHTER > EMAIL THE WORKSHOP > EMAIL THE WORKSHOP > hello@brannock.example"
+  },
+  {
+    "check": "mobile navigation",
+    "result": "Not tested",
+    "scope": "the site has no menu (one page)",
+    "detail": ""
+  },
+  {
+    "check": "schema",
+    "result": "Passed",
+    "scope": "JSON-LD parses; each text value is in 01-brief.md (validity and facts only, no claim about search results)",
+    "detail": "10 text values checked"
+  }
+]

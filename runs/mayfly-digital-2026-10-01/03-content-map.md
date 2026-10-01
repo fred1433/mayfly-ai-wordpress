@@ -15,15 +15,14 @@ Each line between backticks is matched exactly by the QA script.
 | `Digital marketing and AI consulting, from Dublin since 2012.` | M: "Digital Marketing & AI Consulting", "based in Dublin", "Founded in 2012" |
 | `Mayfly Digital` | M |
 | `Services` | interface |
-| `Process` | interface |
-| `About` | interface |
+| `Process` | interface, links to the process section of Services |
+| `About` | interface, links to the about section of Home |
 | `Contact` | interface |
 | `Book a consultation` | M, button label |
 | `Get in touch` | M, button label |
 | `Start the conversation` | M, button label |
 | `How we work` | interface, links to Process |
 | `What we do` | interface, links to Services |
-| `Our process` | M: "Our Process" |
 | `Strategy` | step 2 title, written from its paragraph; question 3 |
 | `Delivery and optimisation` | step 3 title, written from its paragraph; question 3 |
 | `Assessment` | M |
@@ -43,6 +42,12 @@ Each line between backticks is matched exactly by the QA script.
 | `Mayfly Marketing Ltd, trading as Mayfly Digital.` | T: "Mayfly Marketing Ltd (T/A Mayfly Digital)" |
 | `Terms of Service` | T |
 | `© 2026 Mayfly Digital. All rights reserved.` | M, footer |
+| `Liam is also the author of Local Internet Marketing For The UK & Ireland, and a keynote speaker.` | L: the two book titles, "KEYNOTE SPEAKER" |
+| `Cover of AI Does the Work by Liam Dennehy` | image alt text |
+| `Independent prototype from Mayfly's public material.` | demo notice, Playground only (not part of the theme) |
+| `Page not found` | interface, 404 |
+| `This address has no page.` | interface, 404 |
+| `Go to the home page` | interface, 404 |
 
 ## Quoted, page by page
 Home

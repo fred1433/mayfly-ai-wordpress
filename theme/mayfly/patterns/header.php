@@ -13,8 +13,8 @@
 <!-- /wp:html -->
 <!-- wp:navigation {"overlayMenu":"mobile","layout":{"type":"flex","justifyContent":"right"},"style":{"spacing":{"blockGap":"2rem"}}} -->
 <!-- wp:navigation-link {"label":"Services","url":"<?php echo esc_url( kit_page_url( 'services' ) ); ?>","kind":"custom","isTopLevelLink":true} /-->
-<!-- wp:navigation-link {"label":"Process","url":"<?php echo esc_url( kit_page_url( 'process' ) ); ?>","kind":"custom","isTopLevelLink":true} /-->
-<!-- wp:navigation-link {"label":"About","url":"<?php echo esc_url( kit_page_url( 'about' ) ); ?>","kind":"custom","isTopLevelLink":true} /-->
+<!-- wp:navigation-link {"label":"Process","url":"<?php echo esc_url( kit_page_url( 'services' ) . '#process' ); ?>","kind":"custom","isTopLevelLink":true} /-->
+<!-- wp:navigation-link {"label":"About","url":"<?php echo esc_url( home_url( '/' ) . '#about' ); ?>","kind":"custom","isTopLevelLink":true} /-->
 <!-- wp:navigation-link {"label":"Contact","url":"<?php echo esc_url( kit_page_url( 'contact' ) ); ?>","kind":"custom","isTopLevelLink":true} /-->
 <!-- /wp:navigation -->
 </div>

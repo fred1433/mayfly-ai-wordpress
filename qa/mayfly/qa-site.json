@@ -1,0 +1,86 @@
+[
+  {
+    "check": "page /",
+    "result": "Passed",
+    "scope": "HTTP status after login",
+    "detail": "200"
+  },
+  {
+    "check": "page /services/",
+    "result": "Passed",
+    "scope": "HTTP status after login",
+    "detail": "200"
+  },
+  {
+    "check": "page /contact/",
+    "result": "Passed",
+    "scope": "HTTP status after login",
+    "detail": "200"
+  },
+  {
+    "check": "links to LinkedIn",
+    "result": "Not tested",
+    "scope": "LinkedIn answers 999 to every automated request",
+    "detail": "https://www.linkedin.com/in/ldennehy/ (opened by hand instead, see report)"
+  },
+  {
+    "check": "links",
+    "result": "Passed",
+    "scope": "16 distinct links on 3 pages, internal and external",
+    "detail": "all answer 200"
+  },
+  {
+    "check": "axe / at 1440px",
+    "result": "Passed",
+    "scope": "automated WCAG 2.1 A/AA rules only",
+    "detail": "0 violations"
+  },
+  {
+    "check": "axe /services/ at 1440px",
+    "result": "Passed",
+    "scope": "automated WCAG 2.1 A/AA rules only",
+    "detail": "0 violations"
+  },
+  {
+    "check": "axe /contact/ at 1440px",
+    "result": "Passed",
+    "scope": "automated WCAG 2.1 A/AA rules only",
+    "detail": "0 violations"
+  },
+  {
+    "check": "axe / at 390px",
+    "result": "Passed",
+    "scope": "automated WCAG 2.1 A/AA rules only",
+    "detail": "0 violations"
+  },
+  {
+    "check": "axe /services/ at 390px",
+    "result": "Passed",
+    "scope": "automated WCAG 2.1 A/AA rules only",
+    "detail": "0 violations"
+  },
+  {
+    "check": "axe /contact/ at 390px",
+    "result": "Passed",
+    "scope": "automated WCAG 2.1 A/AA rules only",
+    "detail": "0 violations"
+  },
+  {
+    "check": "keyboard focus",
+    "result": "Passed",
+    "scope": "first 12 Tab stops on the home page, desktop; admin toolbar stops ignored",
+    "detail": "Skip to content > Mayfly Digital > Services > Process > About > Contact > Book a consultation > How we work > Integrated Digital Marketing Strategy > Performance Advertising & Analytics > Content & Channel Execution > AI Integration & Automation"
+  },
+  {
+    "check": "mobile navigation",
+    "result": "Passed",
+    "scope": "390 px: open the menu, follow its first link",
+    "detail": "'Services' -> /services/"
+  },
+  {
+    "check": "schema",
+    "result": "Passed",
+    "scope": "JSON-LD parses; each text value is in 01-brief.md (validity and facts only, no claim about search results)",
+    "detail": "14 text values checked"
+  }
+]

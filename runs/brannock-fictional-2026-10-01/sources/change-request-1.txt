@@ -1,0 +1,3 @@
+Change request 1, from the client (fictional), after the site went live:
+"Lead time has changed. We are now booking work for 6 to 8 weeks from the date of the quote. Nothing else."
+Turned by the build agent into: page home, section lead-time, current text "10 to 14", new text "6 to 8".
