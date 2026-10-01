@@ -1,0 +1,148 @@
+{
+  "mayflydigital.ie": {
+    "url": "https://mayflydigital.ie/",
+    "mailto": [
+      "productionteam@mayflydigital.ie"
+    ],
+    "images": [
+      "https://mayflydigital.ie/wp-content/uploads/2026/01/device-repair-1b.png",
+      "https://mayflydigital.ie/wp-content/uploads/2026/01/logo-sticky-1.png"
+    ],
+    "links": [
+      "https://mayflydigital.ie/",
+      "mailto:productionteam@mayflydigital.ie"
+    ],
+    "wordpress_pages": [
+      {
+        "slug": "terms-of-service",
+        "title": "Terms of Service",
+        "modified": "2026-01-09T11:34:11"
+      },
+      {
+        "slug": "home",
+        "title": "Home",
+        "modified": "2026-01-09T11:43:05"
+      }
+    ],
+    "wordpress_posts": 0
+  },
+  "mayflydigital.ie_terms-of-service": {
+    "url": "https://mayflydigital.ie/terms-of-service/",
+    "mailto": [
+      "productionteam@mayflydigital.ie"
+    ],
+    "images": [
+      "https://mayflydigital.ie/wp-content/uploads/2026/01/logo-sticky-1.png"
+    ],
+    "links": [
+      "https://mayflydigital.ie/",
+      "https://mayflydigital.ie/terms-of-service/",
+      "mailto:productionteam@mayflydigital.ie"
+    ],
+    "wordpress_pages": [
+      {
+        "slug": "terms-of-service",
+        "title": "Terms of Service",
+        "modified": "2026-01-09T11:34:11"
+      },
+      {
+        "slug": "home",
+        "title": "Home",
+        "modified": "2026-01-09T11:43:05"
+      }
+    ],
+    "wordpress_posts": 0
+  },
+  "liamdennehy.com": {
+    "url": "https://liamdennehy.com/",
+    "mailto": [
+      "liam.dennehy@mayflydigital.ie"
+    ],
+    "images": [
+      "https://liamdennehy.com/wp-content/uploads/2023/10/clients-2.jpg",
+      "https://liamdennehy.com/wp-content/uploads/2023/10/resume_logo_2x.png",
+      "https://liamdennehy.com/wp-content/uploads/2026/09/book-launch-1-1-800x800-1.jpg"
+    ],
+    "links": [
+      "https://liamdennehy.com/",
+      "https://liamdennehy.com/author/liam2023/",
+      "https://www.linkedin.com/in/ldennehy/?originalSubdomain=ie"
+    ],
+    "wordpress_pages": [
+      {
+        "slug": "thank-you",
+        "title": "Thank you",
+        "modified": "2026-01-12T17:34:55"
+      },
+      {
+        "slug": "privacy-policy",
+        "title": "Privacy Policy",
+        "modified": "2026-01-12T18:10:40"
+      },
+      {
+        "slug": "sample-page",
+        "title": "Sample Page",
+        "modified": "2023-10-06T10:37:45"
+      },
+      {
+        "slug": "resume-home",
+        "title": "Resume Home",
+        "modified": "2026-09-24T14:00:09"
+      }
+    ],
+    "wordpress_posts": 1
+  },
+  "liamdennehy.com_book": {
+    "url": "https://liamdennehy.com/book/",
+    "mailto": [
+      "liam.dennehy@mayflydigital.ie"
+    ],
+    "images": [
+      "https://liamdennehy.com/wp-content/uploads/2016/07/portfolio-8-1200-1200.jpg",
+      "https://liamdennehy.com/wp-content/uploads/2016/07/portfolio1_1200x1200.jpg",
+      "https://liamdennehy.com/wp-content/uploads/2016/07/portfolio4_1200x1200.jpg",
+      "https://liamdennehy.com/wp-content/uploads/2016/07/portfolio5_1200x1200.jpg",
+      "https://liamdennehy.com/wp-content/uploads/2016/07/portfolio6_1200x1200.jpg",
+      "https://liamdennehy.com/wp-content/uploads/2016/07/portfolio7-1200-1200.jpg",
+      "https://liamdennehy.com/wp-content/uploads/2023/10/resume_logo_2x.png"
+    ],
+    "links": [
+      "https://liamdennehy.com/",
+      "https://liamdennehy.com/author/liam2023/",
+      "https://liamdennehy.com/portfolio-items/book-cover/",
+      "https://liamdennehy.com/portfolio-items/branding-collection/",
+      "https://liamdennehy.com/portfolio-items/branding-power/",
+      "https://liamdennehy.com/portfolio-items/creative-pitcher/",
+      "https://liamdennehy.com/portfolio-items/mobile-app-design/",
+      "https://liamdennehy.com/portfolio-items/package-design/",
+      "https://liamdennehy.com/portfolio_category/design/",
+      "https://liamdennehy.com/portfolio_skills/branding/",
+      "https://liamdennehy.com/portfolio_skills/design/",
+      "https://liamdennehy.com/portfolio_skills/packaging/",
+      "https://www.linkedin.com/in/ldennehy/?originalSubdomain=ie"
+    ],
+    "wordpress_pages": [
+      {
+        "slug": "thank-you",
+        "title": "Thank you",
+        "modified": "2026-01-12T17:34:55"
+      },
+      {
+        "slug": "privacy-policy",
+        "title": "Privacy Policy",
+        "modified": "2026-01-12T18:10:40"
+      },
+      {
+        "slug": "sample-page",
+        "title": "Sample Page",
+        "modified": "2023-10-06T10:37:45"
+      },
+      {
+        "slug": "resume-home",
+        "title": "Resume Home",
+        "modified": "2026-09-24T14:00:09"
+      }
+    ],
+    "wordpress_posts": 1
+  }
+}
