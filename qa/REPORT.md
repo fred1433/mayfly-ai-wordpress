@@ -15,6 +15,7 @@ Each line: result, what was checked, and its scope. Raw output in the JSON files
 | Passed | Phone menu opens and its first link leads to a page | 390 px. Closing it, Escape and focus return are not checked |
 | Passed | Schema: JSON-LD parses, and its text values (not URLs or @ keys) are in `01-brief.md` | not a full schema or SEO validation |
 | Passed | Public Playground link, cold start in a clean profile: 9.1 s Chromium, 9.3 s WebKit, 9.4 s WebKit iPhone 13 profile | `qa/mayfly/playground.json`, one run each, on a fast line; a slower line will be slower |
+| Passed | v1.1 blueprint, same test: 9.7 s Chromium, 9.3 s WebKit, 9.8 s WebKit iPhone 13 profile (emulated) | `qa/mayfly/playground.json` |
 | Failed, then fixed | The first public blueprint was refused by Playground (`writeFiles` needs `"resource": "literal:directory"`) | found by opening the link; fixed in `build_blueprint.py`, re-tested above |
 | Not tested | Screen reader by hand; colour contrast in the editor; print | |
 | Not tested | Page speed | inside Playground PHP runs in the browser, so a score would mean nothing |

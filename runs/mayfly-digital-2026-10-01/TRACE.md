@@ -159,3 +159,5 @@ Times are Dublin time.
   line split so it no longer implies AI consulting since 2012, the second agency paragraph removed.
 - Correction to this file's header: steps were not each committed on their own; steps 7 to 9, for example, share
   one commit. Recorded during the build, with intermediate commits, is the accurate description.
+- Blueprint rebuilt with the theme at `787e1cc`; cold start in a clean profile 9.7 s Chromium, 9.3 s WebKit, 9.8 s
+  emulated iPhone. Tagged `v1.1`.

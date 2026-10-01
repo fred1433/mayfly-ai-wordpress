@@ -1,11 +1,11 @@
 {
-  "url": "https://playground.wordpress.net/?blueprint-url=https%3A%2F%2Fraw.githubusercontent.com%2Ffred1433%2Fmayfly-ai-wordpress%2Ffb3c6d7e50e4b800df990490049db3540131979b%2Fblueprint.json",
+  "url": "https://playground.wordpress.net/?blueprint-url=https%3A%2F%2Fraw.githubusercontent.com%2Ffred1433%2Fmayfly-ai-wordpress%2Fed07b53529143ebb205e93d2565979f4a46d372a%2Fblueprint.json",
   "results": [
     {
       "check": "Playground cold start, chromium-desktop",
       "result": "Passed",
       "scope": "clean browser profile, from opening the link to the home page text being shown",
-      "detail": "9.1 s"
+      "detail": "9.7 s"
     },
     {
       "check": "Playground cold start, webkit-desktop",
@@ -17,7 +17,7 @@
       "check": "Playground cold start, webkit-iphone",
       "result": "Passed",
       "scope": "clean browser profile, from opening the link to the home page text being shown",
-      "detail": "9.4 s"
+      "detail": "9.8 s"
     }
   ]
 }
