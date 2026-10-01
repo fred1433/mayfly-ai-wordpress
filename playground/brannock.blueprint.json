@@ -17,7 +17,7 @@
       "themeData": {
         "resource": "git:directory",
         "url": "https://github.com/fred1433/mayfly-ai-wordpress",
-        "ref": "0000000000000000000000000000000000000000",
+        "ref": "3dabb43d5cf1253596839c06d3846f416fa6ad7c",
         "refType": "commit",
         "path": "theme/brannock"
       },
