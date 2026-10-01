@@ -1,0 +1,5 @@
+[
+  { "slug": "home", "title": "Home", "file": "home.html", "menu_order": 0, "front": true },
+  { "slug": "services", "title": "Services", "file": "services.html", "menu_order": 1 },
+  { "slug": "contact", "title": "Contact", "file": "contact.html", "menu_order": 2 }
+]

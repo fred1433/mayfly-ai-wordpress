@@ -1,5 +1,5 @@
 /*
- * The axis. One orange line, the mayfly's body extended, runs down every page.
+ * Mayfly: the axis. One orange line, the bar of the wordmark extended, runs down every page.
  * Headings stand to its left, flush against it; text reads to its right.
  * Colours, type and spacing live in theme.json; this file only places things on the axis.
  */
@@ -9,7 +9,7 @@
 	--mf-axis: 0.4;                          /* axis position, share of the frame */
 	--mf-gap: clamp(1.5rem, 3.2vw, 3rem);    /* distance from the axis to text */
 	--mf-line: 2px;
-	--mf-mark-w: min(520px, 76vw);           /* hero mayfly width */
+	--mf-mark-w: min(380px, 64vw);           /* hero mayfly width */
 	--mf-pin-w: 64px;                        /* small mayfly on inner pages */
 	--mf-orange: var(--wp--preset--color--orange);
 }
@@ -27,13 +27,13 @@
 .mf-header .wp-block-navigation .current-menu-item a { color: var(--wp--preset--color--navy); text-decoration: underline; text-decoration-color: var(--mf-orange); text-decoration-thickness: 2px; text-underline-offset: 0.35em; }
 
 /* Frame and axis ---------------------------------------------------------- */
-.mf-frame {
+.kit-frame {
 	position: relative;
 	max-width: 1200px;
 	margin-inline: auto;
 	padding: 0 var(--mf-g) clamp(4rem, 8vw, 7rem);
 }
-.mf-frame::before {
+.kit-frame::before {
 	content: "";
 	position: absolute;
 	top: var(--mf-axis-top, 0);
@@ -44,7 +44,7 @@
 	background: var(--mf-orange);
 }
 /* The axis ends in a point, just above the footer. */
-.mf-frame::after {
+.kit-frame::after {
 	content: "";
 	position: absolute;
 	bottom: -5px;
@@ -56,8 +56,8 @@
 	background: var(--mf-orange);
 }
 
-.mf-frame .entry-content > *,
-.mf-frame .wp-block-post-content > * { margin-block: 0; }
+.kit-frame .entry-content > *,
+.kit-frame .wp-block-post-content > * { margin-block: 0; }
 
 /* Rows: heading left of the axis, text right of it ----------------------- */
 .mf-row {
@@ -112,37 +112,37 @@
 }
 
 /* Hero: the mayfly drawn large, its tail becoming the axis ---------------- */
-.mf-frame:has(.mf-hero) { --mf-axis-top: calc(clamp(1.5rem, 4vw, 3rem) + var(--mf-mark-w) * 0.909 - 2px); }
-.mf-hero__mark { padding-top: clamp(1.5rem, 4vw, 3rem); margin-left: calc(var(--mf-axis) * 100% - var(--mf-mark-w) * 0.4897); width: var(--mf-mark-w); line-height: 0; }
-.mf-hero .mf-row { padding-top: clamp(1.5rem, 3vw, 2.5rem); }
-.mf-hero h1 { font-size: var(--wp--preset--font-size--xx-large); }
-.mf-hero .mf-right { padding-top: 0.5rem; }
+.kit-front { --mf-axis-top: calc(clamp(1.5rem, 4vw, 3rem) + var(--mf-mark-w) * 0.909 - 2px); }
+.mf-hero-mark { padding-top: clamp(1.5rem, 4vw, 3rem); margin-left: calc(var(--mf-axis) * 100% - var(--mf-mark-w) * 0.4897); width: var(--mf-mark-w); line-height: 0; }
+.kit-front .mf-row--hero { padding-top: clamp(1rem, 2vw, 1.5rem); }
+.mf-row--hero h1 { font-size: var(--wp--preset--font-size--xx-large); }
+.mf-row--hero .mf-right { padding-top: 0.5rem; }
 
 .mf-mark { display: block; width: 100%; height: auto; overflow: visible; }
 .mf-mark path { fill: none; stroke: var(--mf-orange); stroke-width: 3.2; stroke-linejoin: round; stroke-linecap: round; }
-.mf-mark path:last-child { stroke-width: 4; stroke-linecap: butt; }
+.mf-mark path:last-child { stroke-width: 2.6; stroke-linecap: butt; } /* 2.6 units at 380 px = the 2 px axis */
 
 /* Inner pages: a small mayfly pinned at the top of the axis */
-.mf-frame:has(.mf-pin) { --mf-axis-top: calc(2.5rem + var(--mf-pin-w) * 0.909 - 2px); }
+.kit-page { --mf-axis-top: calc(2.5rem + var(--mf-pin-w) * 0.909 - 2px); }
 .mf-pin { padding-top: 2.5rem; margin-left: calc(var(--mf-axis) * 100% - var(--mf-pin-w) * 0.4897); width: var(--mf-pin-w); line-height: 0; }
-.mf-pin .mf-mark path { stroke-width: 9; }
-.mf-pin .mf-mark path:last-child { stroke-width: 11; }
+.mf-pin .mf-mark path { stroke-width: 6.5; }
+.mf-pin .mf-mark path:last-child { stroke-width: 8; }
 .mf-pin + .mf-row { padding-top: clamp(1.5rem, 3vw, 2.5rem); }
 
 /* The one motion: the mayfly draws itself once, then the axis grows down */
 @media (prefers-reduced-motion: no-preference) {
-	.mf-hero .mf-mark path {
+	.mf-hero-mark .mf-mark path {
 		stroke-dasharray: 1;
 		stroke-dashoffset: 1;
 		animation: mf-draw 1.1s cubic-bezier(.65,0,.35,1) forwards;
 		animation-delay: calc(var(--i) * 90ms);
 	}
-	.mf-frame:has(.mf-hero)::before {
+	.kit-front::before {
 		transform-origin: top;
 		transform: scaleY(0);
 		animation: mf-grow 1.6s cubic-bezier(.65,0,.35,1) 1.2s forwards;
 	}
-	.mf-hero .mf-row { opacity: 0; animation: mf-in 0.8s ease-out 0.7s forwards; }
+	.kit-front .mf-row--hero { opacity: 0; animation: mf-in 0.8s ease-out 0.7s forwards; }
 }
 @keyframes mf-draw { to { stroke-dashoffset: 0; } }
 @keyframes mf-grow { to { transform: scaleY(1); } }
@@ -159,8 +159,8 @@ a { text-decoration-thickness: 1px; text-underline-offset: 0.2em; }
 .mf-quote p { font-style: italic; font-size: var(--wp--preset--font-size--large); line-height: 1.45; }
 
 /* Book cover */
-.mf-cover { margin: 1.5rem 0 0 auto !important; max-width: 300px; }
-.mf-cover img { display: block; width: 100%; height: auto; mix-blend-mode: multiply; }
+.mf-cover { margin: 2rem 0 0 auto !important; max-width: 240px; }
+.mf-cover img { display: block; width: 100% !important; height: auto; filter: drop-shadow(0 14px 18px rgba(23, 33, 58, 0.16)); }
 
 /* Footer ------------------------------------------------------------------ */
 .mf-footer { max-width: 1200px; margin-inline: auto; padding: 2.5rem var(--mf-g) 3rem; font-size: var(--wp--preset--font-size--small); color: var(--wp--preset--color--graphite); }
@@ -170,27 +170,28 @@ a { text-decoration-thickness: 1px; text-underline-offset: 0.2em; }
 .mf-footer .mf-right > * + * { margin-block-start: 0.35rem; }
 .mf-footer a { color: var(--wp--preset--color--graphite); }
 
-/* Small screens: the axis moves to the left edge --------------------------- */
+/* Small screens: the axis moves to the left edge, drawn by each row ------- */
 @media (max-width: 781px) {
-	:root { --mf-gap: 1.25rem; }
-	.mf-frame::before, .mf-frame::after { left: var(--mf-g); }
+	:root { --mf-gap: 1.25rem; --mf-mark-w: min(300px, 74vw); }
+	.kit-frame::before { display: none; }
+	.kit-frame::after { left: calc(var(--mf-g) + 1px); }
+	.kit-frame .mf-row:not(.mf-row--hero) { border-left: var(--mf-line) solid var(--mf-orange); }
 	.mf-row { grid-template-columns: 1fr; padding-left: var(--mf-gap); }
 	.mf-row > .mf-left { text-align: left; padding-right: 0; }
 	.mf-row > .mf-right { padding-left: 0; }
 	.mf-row > .mf-right:not(:first-child) { margin-top: 0.9rem !important; }
-	.mf-row--ruled > .mf-left { padding-top: 0; }
 	.mf-row--ruled > .mf-right { border-top: 0; padding-top: 0; }
-	.mf-row--ruled { border-top: 1px solid var(--wp--preset--color--reed); margin-left: var(--mf-gap); padding-left: 0; padding-top: 1.5rem; }
-	.mf-step::after { left: 0; }
+	.mf-row--ruled > .mf-left { border-top: 1px solid var(--wp--preset--color--reed); padding-top: 1.5rem; }
+	.mf-row--ruled { padding-top: 1.5rem; }
+	.mf-step::after { left: 0; margin-left: -8.5px; top: calc(clamp(2.5rem, 5.5vw, 5rem) + 0.35rem); }
 	.mf-step > .mf-left .mf-num { font-size: 2.75rem; }
-	.mf-cover { margin: 1.25rem 0 0 0 !important; max-width: 240px; }
+	.mf-cover { margin: 1.5rem 0 0.5rem 0 !important; max-width: 200px; }
 
-	/* Hero: the mayfly centred, its tail running down to the axis start on the left */
-	.mf-frame:has(.mf-hero) { --mf-axis-top: 0; }
-	.mf-hero__mark { margin-left: auto; margin-right: auto; }
-	.mf-hero .mf-row { padding-top: 1.5rem; }
-	.mf-pin { margin-left: calc(var(--mf-pin-w) * -0.4897); }
-	.mf-frame:has(.mf-pin) { --mf-axis-top: calc(2.5rem + var(--mf-pin-w) * 0.909 - 2px); }
+	/* Hero: the mark centred above the headline; the axis starts with the first row under it. */
+	.mf-hero-mark { margin-left: auto; margin-right: auto; }
+	.kit-front .mf-row--hero { padding: 1.25rem 0 0.5rem; }
+	.mf-pin { display: none; }
+	.kit-page .mf-row--intro { padding-top: 2rem; }
 	.mf-footer .mf-row { padding-left: 0; }
 	.mf-footer .mf-right { margin-top: 1rem !important; }
 }

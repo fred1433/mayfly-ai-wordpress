@@ -56,7 +56,7 @@
         { "slug": "medium", "name": "Body", "size": "1.1875rem", "fluid": false },
         { "slug": "large", "name": "Lead", "size": "1.4375rem", "fluid": { "min": "1.25rem", "max": "1.4375rem" } },
         { "slug": "x-large", "name": "Heading", "size": "2.25rem", "fluid": { "min": "1.75rem", "max": "2.25rem" } },
-        { "slug": "xx-large", "name": "Display", "size": "4.25rem", "fluid": { "min": "2.5rem", "max": "4.25rem" } }
+        { "slug": "xx-large", "name": "Display", "size": "3.75rem", "fluid": { "min": "2.5rem", "max": "3.75rem" } }
       ]
     }
   },

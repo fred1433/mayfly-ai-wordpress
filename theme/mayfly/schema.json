@@ -1,0 +1,27 @@
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "@id": "https://mayflydigital.ie/#organization",
+  "name": "Mayfly Digital",
+  "legalName": "Mayfly Marketing Ltd",
+  "url": "https://mayflydigital.ie/",
+  "email": "productionteam@mayflydigital.ie",
+  "foundingDate": "2012",
+  "description": "Digital Marketing & AI Consulting. An online marketing agency based in Dublin.",
+  "logo": "{{theme}}/assets/img/mayfly-digital-wordmark.png",
+  "address": { "@type": "PostalAddress", "addressLocality": "Dublin", "addressCountry": "IE" },
+  "areaServed": { "@type": "Country", "name": "Ireland" },
+  "knowsAbout": [
+    "Integrated Digital Marketing Strategy",
+    "Performance Advertising & Analytics",
+    "Content & Channel Execution",
+    "AI Integration & Automation"
+  ],
+  "employee": {
+    "@type": "Person",
+    "name": "Liam Dennehy",
+    "jobTitle": "Managing Director",
+    "url": "https://liamdennehy.com/",
+    "sameAs": ["https://www.linkedin.com/in/ldennehy/"]
+  }
+}

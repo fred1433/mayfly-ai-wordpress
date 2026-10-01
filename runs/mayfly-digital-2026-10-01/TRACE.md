@@ -76,4 +76,20 @@ Times are Dublin time.
   - **QA as a Passed / Failed / Not tested report**, automated and manual checks kept apart.
   - Label: an independent prototype from Mayfly's public material, never "your new website".
 - Work already done and kept: harvest, brief, content map, design plan, theme.json, the axis stylesheet, the line
-  redraw of the mark. Work thrown away: the per-page content patterns (about, process pages).
+  redraw of the mark. Work thrown away: the home content pattern written so far (its text moves into a Page).
+
+## Step 6. Theme and content (build agent, 16:37 to 16:46)
+- Started a generic scaffold (`kit/theme-scaffold`, `kit/scripts/new_theme.py`) and regenerated the Mayfly theme from
+  it, so the next site starts from the same files. Mayfly-specific parts: `theme.json`, `assets/css/site.css`,
+  `patterns/`, `inc/mark.php`, `schema.json`.
+- Content: three Pages as core block markup in `content/mayfly/`, seeded by `kit/seed/seed.php`, which never overwrites
+  a page that already exists.
+- Ran locally in WordPress Playground (`kit/scripts/serve.sh mayfly`) and read screenshots at 1440 and 390 px after each
+  pass. What the screenshots changed, decided by the build agent:
+  - Pass 1: the mayfly mark pushed the headline below the first screen at 1440 x 900. Mark reduced from 520 to 380 px,
+    display size from 68 to 60 px.
+  - Pass 1: the book cover sat in a grey square. Cut out with a local background-removal model, so the book stands on
+    the page.
+  - Pass 1: on a phone the axis ran beside the centred mark and looked accidental. On small screens the line now
+    starts with the first section under the hero, drawn by each section's left edge.
+  - Pass 2: the mark's tail was twice as thick as the axis it turns into. Matched to 2 px.
