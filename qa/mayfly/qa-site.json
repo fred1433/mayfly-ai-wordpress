@@ -21,7 +21,7 @@
     "check": "links to LinkedIn",
     "result": "Not tested",
     "scope": "LinkedIn answers 999 to every automated request",
-    "detail": "https://www.linkedin.com/in/ldennehy/ (opened by hand instead, see report)"
+    "detail": "https://www.linkedin.com/in/ldennehy/ (check by hand)"
   },
   {
     "check": "links",

@@ -97,7 +97,7 @@ def main():
                 bad.append(f"{href} -> {status}")
         if blocked:
             results.append({"check": "links to LinkedIn", "result": "Not tested", "scope": "LinkedIn answers 999 to every automated request",
-                            "detail": "; ".join(blocked) + " (opened by hand instead, see report)"})
+                            "detail": "; ".join(blocked) + " (check by hand)"})
             print("NOT TESTED  LinkedIn links: " + "; ".join(blocked))
         # Fragment links must land on an element with that id.
         for href in sorted(links):
