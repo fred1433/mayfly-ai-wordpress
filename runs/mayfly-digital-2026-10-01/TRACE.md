@@ -61,3 +61,19 @@ Times are Dublin time.
   its right. Colours sampled from the logo files (orange #FF8A00, grey #404041) and from Liam's book cover (navy).
 - Self-review against generic defaults changed two things before coding: cream background and serif display
   replaced; split hero plus service grid replaced by the axis. Both reasons are in the plan.
+
+## Step 5. Second opinion arrives mid-build (orchestrator, 16:36)
+- While the build agent was writing the theme, the orchestrator relayed the verdict of a second model from another
+  family (ChatGPT 6 Pro), consulted on the commission brief. The orchestrator ruled that its corrections win where
+  they differ. What it changed in this run:
+  - **Content model.** The build agent had put page content in theme patterns, so the site could boot without an
+    import. Overruled: content now lives in real WordPress Pages made of core blocks, seeded by a small PHP step.
+    The theme keeps layout, type, spacing and reusable patterns. Reason: an agency edits Pages, not templates, and a
+    template edited in the Site Editor is stored in the database and stops following the theme's file.
+  - **Three pages, not five.** Home, Services, Contact. About becomes a section of Home; Process a section of Services.
+  - **Prove reuse** with a second, clearly fictional brief through the same chain, and a **revision test**: after a
+    human edit, a bounded change request goes through without overwriting the unrelated edit.
+  - **QA as a Passed / Failed / Not tested report**, automated and manual checks kept apart.
+  - Label: an independent prototype from Mayfly's public material, never "your new website".
+- Work already done and kept: harvest, brief, content map, design plan, theme.json, the axis stylesheet, the line
+  redraw of the mark. Work thrown away: the per-page content patterns (about, process pages).

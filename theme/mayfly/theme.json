@@ -1,0 +1,106 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/theme.json",
+  "version": 3,
+  "settings": {
+    "appearanceTools": true,
+    "useRootPaddingAwareAlignments": true,
+    "color": {
+      "defaultPalette": false,
+      "defaultGradients": false,
+      "defaultDuotone": false,
+      "custom": false,
+      "palette": [
+        { "slug": "mist", "name": "Mist", "color": "#F5F6F3" },
+        { "slug": "navy", "name": "Navy", "color": "#17213A" },
+        { "slug": "graphite", "name": "Graphite", "color": "#404041" },
+        { "slug": "orange", "name": "Mayfly orange", "color": "#FF8A00" },
+        { "slug": "reed", "name": "Reed", "color": "#D3D7CF" }
+      ]
+    },
+    "layout": { "contentSize": "680px", "wideSize": "1200px" },
+    "spacing": {
+      "units": ["px", "rem", "%", "vw"],
+      "padding": true,
+      "spacingSizes": [
+        { "slug": "20", "name": "XS", "size": "0.5rem" },
+        { "slug": "30", "name": "S", "size": "1rem" },
+        { "slug": "40", "name": "M", "size": "1.75rem" },
+        { "slug": "50", "name": "L", "size": "clamp(2.5rem, 5vw, 4rem)" },
+        { "slug": "60", "name": "XL", "size": "clamp(4rem, 9vw, 7.5rem)" }
+      ]
+    },
+    "typography": {
+      "defaultFontSizes": false,
+      "fluid": true,
+      "fontFamilies": [
+        {
+          "slug": "jost",
+          "name": "Jost",
+          "fontFamily": "Jost, 'Futura', 'Avenir Next', sans-serif",
+          "fontFace": [
+            { "fontFamily": "Jost", "fontStyle": "normal", "fontWeight": "300 500", "fontDisplay": "swap", "src": ["file:./assets/fonts/jost-latin-var.woff2"] }
+          ]
+        },
+        {
+          "slug": "newsreader",
+          "name": "Newsreader",
+          "fontFamily": "Newsreader, 'Iowan Old Style', Georgia, serif",
+          "fontFace": [
+            { "fontFamily": "Newsreader", "fontStyle": "normal", "fontWeight": "400 500", "fontDisplay": "swap", "src": ["file:./assets/fonts/newsreader-latin-var.woff2"] },
+            { "fontFamily": "Newsreader", "fontStyle": "italic", "fontWeight": "400", "fontDisplay": "swap", "src": ["file:./assets/fonts/newsreader-italic-latin-var.woff2"] }
+          ]
+        }
+      ],
+      "fontSizes": [
+        { "slug": "small", "name": "Small", "size": "0.9375rem", "fluid": false },
+        { "slug": "medium", "name": "Body", "size": "1.1875rem", "fluid": false },
+        { "slug": "large", "name": "Lead", "size": "1.4375rem", "fluid": { "min": "1.25rem", "max": "1.4375rem" } },
+        { "slug": "x-large", "name": "Heading", "size": "2.25rem", "fluid": { "min": "1.75rem", "max": "2.25rem" } },
+        { "slug": "xx-large", "name": "Display", "size": "4.25rem", "fluid": { "min": "2.5rem", "max": "4.25rem" } }
+      ]
+    }
+  },
+  "styles": {
+    "color": { "background": "var(--wp--preset--color--mist)", "text": "var(--wp--preset--color--navy)" },
+    "typography": {
+      "fontFamily": "var(--wp--preset--font-family--newsreader)",
+      "fontSize": "var(--wp--preset--font-size--medium)",
+      "lineHeight": "1.6",
+      "fontWeight": "400"
+    },
+    "spacing": {
+      "blockGap": "1.25rem",
+      "padding": { "left": "clamp(1rem, 4vw, 3rem)", "right": "clamp(1rem, 4vw, 3rem)" }
+    },
+    "elements": {
+      "heading": {
+        "typography": { "fontFamily": "var(--wp--preset--font-family--jost)", "fontWeight": "300", "lineHeight": "1.12", "letterSpacing": "-0.01em" },
+        "color": { "text": "var(--wp--preset--color--navy)" }
+      },
+      "h1": { "typography": { "fontSize": "var(--wp--preset--font-size--xx-large)", "lineHeight": "1.04" } },
+      "h2": { "typography": { "fontSize": "var(--wp--preset--font-size--x-large)" } },
+      "h3": { "typography": { "fontSize": "var(--wp--preset--font-size--large)", "fontWeight": "400", "lineHeight": "1.3" } },
+      "link": {
+        "color": { "text": "var(--wp--preset--color--navy)" },
+        "typography": { "textDecoration": "underline" },
+        ":hover": { "typography": { "textDecoration": "underline" }, "color": { "text": "var(--wp--preset--color--graphite)" } }
+      },
+      "button": {
+        "color": { "background": "var(--wp--preset--color--navy)", "text": "var(--wp--preset--color--mist)" },
+        "typography": { "fontFamily": "var(--wp--preset--font-family--jost)", "fontWeight": "400", "fontSize": "1.0625rem", "letterSpacing": "0.01em", "lineHeight": "1.2" },
+        "border": { "radius": "2px" },
+        "spacing": { "padding": { "top": "0.85rem", "bottom": "0.85rem", "left": "1.5rem", "right": "1.5rem" } },
+        ":hover": { "color": { "background": "var(--wp--preset--color--graphite)", "text": "var(--wp--preset--color--mist)" } }
+      }
+    },
+    "blocks": {
+      "core/navigation": {
+        "typography": { "fontFamily": "var(--wp--preset--font-family--jost)", "fontSize": "1.0625rem", "fontWeight": "400" }
+      }
+    }
+  },
+  "templateParts": [
+    { "name": "header", "title": "Header", "area": "header" },
+    { "name": "footer", "title": "Footer", "area": "footer" }
+  ]
+}
