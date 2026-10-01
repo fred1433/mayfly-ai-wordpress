@@ -38,3 +38,26 @@ Times are Dublin time.
 - Images kept, all published by Mayfly or Liam: the wordmark (350 x 90 PNG), the orange mayfly mark (512 x 512 PNG),
   the "AI Does the Work" cover (800 x 800 JPG). The cover image carries "Book launch November 2026" and the subtitle
   "The Irish SME guide to structural advantage": read off the image by the build agent, flagged as a fact to confirm.
+
+## Step 2. Brief and architecture (build agent, 16:28 to 16:29)
+- `01-brief.md`: every fact with its source letter. Left out on purpose: Liam's career length and "300 brands"
+  (his career, not the agency's), the "Licensed Marketing Services" product from the terms (not on the home page,
+  asked instead).
+- `02-architecture.md`: five pages. Not built: case studies, team, logos, testimonials, blog, contact form. Nothing
+  public to build them from.
+- `questions-for-mayfly.md`: 13 questions. Each one is a gap the site does not fill by guessing.
+- Decided by the build agent: block theme rather than a page builder (reasons in `02-architecture.md`); content in
+  theme patterns so the site boots from one link with no import.
+
+## Step 3. Content map (build agent, 16:29)
+- `03-content-map.md`: quoted text page by page, and an allowlist of every composed line with what it rests on.
+- Two step titles had to be written ("Strategy", "Delivery and optimisation"), because the source titles belong to a
+  page-builder layout. Marked as composed, asked as question 3.
+- The book subtitle and launch month come from the cover image only: marked composed, asked as question 1.
+
+## Step 4. Design plan (build agent, 16:29)
+- `04-design-plan.md`, written before any code. Direction taken from the wordmark itself: the mayfly's body is the
+  bar between MAYFLY and DIGITAL, so the site's structure is one vertical axis, headings flush to its left, text to
+  its right. Colours sampled from the logo files (orange #FF8A00, grey #404041) and from Liam's book cover (navy).
+- Self-review against generic defaults changed two things before coding: cream background and serif display
+  replaced; split hero plus service grid replaced by the axis. Both reasons are in the plan.
