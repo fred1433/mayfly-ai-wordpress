@@ -1,5 +1,9 @@
 # The steps
 
+Entry point: a new folder `runs/<client>-<date>/` with the client's material in `sources/`. The steps below were
+run by Claude agents directed by an orchestrating session; the table says what each step consumes and produces,
+so a developer can run them by hand or with any agent. The decisions that need a person are marked **person**.
+
 Each step has an input, a command or a written file, an output, a check, and a named decider. The run's
 `TRACE.md` records, for each step, what was done, what changed, and who decided. Commit after every step.
 
@@ -14,5 +18,5 @@ Each step has an input, a command or a written file, an output, a check, and a n
 | 6 | Content | Content map | `content/<slug>/pages.json` and one core-block HTML file per Page | `content/<slug>/` | Seeded by `kit/seed/seed.php`; never overwrites an existing Page | Build agent |
 | 7 | Serve | Theme, content | `python3 kit/scripts/build_blueprint.py <slug> <owner/repo> <sha>`, then `kit/scripts/serve.sh <slug> <port> --qa` | Local WordPress | Pages answer | Build agent |
 | 8 | QA | Local site | `qa_sources.py <url> runs/<run> <paths>`, `qa_site.py <url> runs/<run> qa/<slug> <paths>` | `qa/<slug>/qa-site.json`, screenshots | Passed / Failed / Not tested, each with its scope; manual checks listed apart | Build agent; a failure blocks release |
-| 9 | Revision | A change request | Turn it into `revise.php <page> <section-anchor> "<current>" "<new>"`; `test_revision.py` proves the mechanism | Changed Page, WordPress revision | Refuses if the current text is not there exactly once (someone changed it: a person decides) | Build agent proposes, client approves |
-| 10 | Publish | Commit | Push, rebuild the blueprint pinned to the commit, tag | `blueprint.json` | Cold start in a clean browser profile | Orchestrator, then Frederic before anything is sent |
+| 9 | Revision | A change request | Turn it into `revise.php <page> <section-anchor> "<current>" "<new>"`; `test_fixtures.py` and `test_revision.py` prove the mechanism | Changed Page, WordPress revision | Refuses if the text is absent or appears more than once in the section; checks the save by reading it back. Not a lock against an edit saved at the same moment | Build agent proposes; **person** approves, and decides on every refusal |
+| 10 | Publish | Commit | Push, rebuild the blueprint with the theme at that commit, tag | `blueprint.json` | `test_playground.py`: cold start in a clean browser profile | Orchestrator; **person** before anything is sent |

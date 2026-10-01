@@ -1,0 +1,14 @@
+{
+  "note": "Fictional business. The editor edit and the change request are recorded in sources/.",
+  "page": "home",
+  "editor": {
+    "paragraph_contains": "Workshop visits by appointment, Monday to Friday.",
+    "new_text": "Workshop visits by appointment, Monday to Saturday.",
+    "check": "Monday to Saturday"
+  },
+  "change": { "anchor": "lead-time", "old": "10 to 14", "new": "6 to 8" },
+  "stale": { "anchor": "visit", "old": "Monday to Friday", "new": "Tuesday to Friday" },
+  "ambiguous": { "anchor": "how", "old": "Thomastown", "new": "Kilkenny" },
+  "seed_dir": "/wordpress/wp-content/kit-content/brannock",
+  "sections": ["lead-time", "visit"]
+}

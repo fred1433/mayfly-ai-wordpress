@@ -1,0 +1,14 @@
+{
+  "note": "Test edits on a local copy, not Mayfly's words and not on the published prototype.",
+  "page": "home",
+  "editor": {
+    "paragraph_contains": "Mayfly Digital is an online marketing agency",
+    "new_text": "Mayfly Digital is an online marketing agency based in Dublin. Founded in 2012, we specialise in providing results driven integrated online marketing solutions for medium and large businesses across the country.",
+    "check": "we specialise in"
+  },
+  "change": { "anchor": "liam", "old": "Liam on LinkedIn", "new": "Liam Dennehy on LinkedIn" },
+  "stale": { "anchor": "about", "old": "we specialize in", "new": "we focus on" },
+  "ambiguous": { "anchor": "about", "old": "online marketing", "new": "digital marketing" },
+  "seed_dir": "/wordpress/wp-content/kit-content/mayfly",
+  "sections": ["about", "liam"]
+}

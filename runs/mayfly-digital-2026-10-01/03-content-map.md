@@ -12,7 +12,8 @@ Each line between backticks is matched exactly by the QA script.
 
 | Text | Rests on |
 |---|---|
-| `Digital marketing and AI consulting, from Dublin since 2012.` | M: "Digital Marketing & AI Consulting", "based in Dublin", "Founded in 2012" |
+| `Digital marketing and AI consulting in Dublin.` | M: "Digital Marketing & AI Consulting", "based in Dublin" |
+| `Mayfly was founded in 2012.` | M: "Founded in 2012" (kept as its own sentence: the sources do not say AI consulting began in 2012) |
 | `Mayfly Digital` | M |
 | `Services` | interface |
 | `Process` | interface, links to the process section of Services |
@@ -54,7 +55,6 @@ Home
 - "A Digital Partner to Ambitious Irish Brands" (headline)
 - "Mayfly Digital is an online marketing agency based in Dublin."
 - "Founded in 2012, we specialize in providing results driven integrated online marketing solutions for medium and large businesses across the country."
-- "We are a team of creative, self-disciplined, self-motivated professionals with a passion to provide your business with a more sophisticated data-driven approach to online marketing and advertising."
 - The four service names, the three step names.
 
 Services

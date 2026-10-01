@@ -9,7 +9,7 @@ PORT="${2:-9400}"
 QA=""
 [ "${3:-}" = "--qa" ] && QA="--mount=$(cd "$(dirname "$0")/.." && pwd)/qa/runner:/wordpress/qa-runner"
 ROOT="$(cd "$(dirname "$0")/../.." && pwd)"
-exec npx -y @wp-playground/cli@latest server \
+exec npx -y @wp-playground/cli@3.1.56 server \
   --port="$PORT" --php=8.3 --wp=7.1 --login \
   --mount="$ROOT/theme/$SITE:/wordpress/wp-content/themes/$SITE" \
   --mount="$ROOT/kit/seed:/wordpress/wp-content/kit/seed" \

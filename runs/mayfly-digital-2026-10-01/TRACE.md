@@ -138,3 +138,24 @@ Times are Dublin time.
 - `kit/scripts/test_playground.py`: cold start in a clean profile, 9.1 s Chromium, 9.3 s WebKit, 9.4 s WebKit with an
   iPhone 13 profile. One run each, on a fast line. Screenshots in `qa/mayfly/screens/playground-*.png`.
 - QA summary written to `qa/REPORT.md`. Tagged `v1.0`; the public links load the blueprint from that tag.
+
+## Step 11. Outside review of the finished demo, and fixes (orchestrator, then second build agent, from 20:02)
+- The orchestrator had the finished demo judged by ChatGPT 6 Pro, which read the code. It found real defects; the
+  orchestrator kept most of its points and passed them on.
+- `revise.php` rewritten: it counted blocks, not occurrences, and `str_replace` changed every occurrence in a block;
+  it ignored the result of `wp_update_post`; it did not slash its data, so escapes in block attributes could be
+  stripped. It now looks only in visible text, requires exactly one occurrence, replaces those bytes and nothing
+  else, slashes, checks the save and reads it back. Its comment no longer implies protection against an edit saved
+  at the same moment.
+- `seed.php` rewritten: it checks every input before creating anything, creates pages as marked drafts so an
+  interrupted run is finished by the next one, and sets the front page only when it publishes it.
+- While re-running: on Mayfly the new read-back check failed inside Playground, because WordPress's HTML filter
+  applies to scripts run without a user and changed the content on save. Both scripts now store the repository's
+  content exactly. Links between pages then resolved to `?page_id=` addresses (the pages are drafts while
+  seeded): the seeder now writes the final address, and the blueprint sets permalinks before seeding.
+- `kit/scripts/test_fixtures.py`: 12 fixtures passed, `qa/fixtures.json`.
+- Revision test re-run on the Mayfly prototype itself, not only the fictional site: 8 checks passed.
+- Site: focus outline navy (orange was about 2.2:1), smaller mayfly on phones and no detached end point, the hero
+  line split so it no longer implies AI consulting since 2012, the second agency paragraph removed.
+- Correction to this file's header: steps were not each committed on their own; steps 7 to 9, for example, share
+  one commit. Recorded during the build, with intermediate commits, is the accurate description.

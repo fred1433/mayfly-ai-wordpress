@@ -1,0 +1,77 @@
+{
+  "spec": {
+    "note": "Test edits on a local copy, not Mayfly's words and not on the published prototype.",
+    "page": "home",
+    "editor": {
+      "paragraph_contains": "Mayfly Digital is an online marketing agency",
+      "new_text": "Mayfly Digital is an online marketing agency based in Dublin. Founded in 2012, we specialise in providing results driven integrated online marketing solutions for medium and large businesses across the country.",
+      "check": "we specialise in"
+    },
+    "change": {
+      "anchor": "liam",
+      "old": "Liam on LinkedIn",
+      "new": "Liam Dennehy on LinkedIn"
+    },
+    "stale": {
+      "anchor": "about",
+      "old": "we specialize in",
+      "new": "we focus on"
+    },
+    "ambiguous": {
+      "anchor": "about",
+      "old": "online marketing",
+      "new": "digital marketing"
+    },
+    "seed_dir": "/wordpress/wp-content/kit-content/mayfly",
+    "sections": [
+      "about",
+      "liam"
+    ]
+  },
+  "diff": [
+    "-<p><a href=\"https://www.linkedin.com/in/ldennehy/\">Liam on LinkedIn</a></p>",
+    "+<p><a href=\"https://www.linkedin.com/in/ldennehy/\">Liam Dennehy on LinkedIn</a></p>"
+  ],
+  "results": [
+    {
+      "check": "person's edit saved through the block editor",
+      "result": "Passed",
+      "detail": "page now contains 'we specialise in'"
+    },
+    {
+      "check": "change request applied",
+      "result": "Passed",
+      "detail": "OK changed section #liam on home: \"Liam on LinkedIn\" -> \"Liam Dennehy on LinkedIn\" (saved, read back, previous version kept as a revision)"
+    },
+    {
+      "check": "person's edit survived the change request",
+      "result": "Passed",
+      "detail": "we specialise in"
+    },
+    {
+      "check": "nothing else on the page changed",
+      "result": "Passed",
+      "detail": "-<p><a href=\"https://www.linkedin.com/in/ldennehy/\">Liam on LinkedIn</a></p> | +<p><a href=\"https://www.linkedin.com/in/ldennehy/\">Liam Dennehy on LinkedIn</a></p>"
+    },
+    {
+      "check": "WordPress kept revisions",
+      "result": "Passed",
+      "detail": "1 before, 3 after"
+    },
+    {
+      "check": "stale request refused, nothing written",
+      "result": "Passed",
+      "detail": "REFUSED refused: in section #about, the current text is not there (someone may have changed it). Nothing written."
+    },
+    {
+      "check": "ambiguous request refused, nothing written",
+      "result": "Passed",
+      "detail": "REFUSED refused: in section #about, the current text appears 2 times (ambiguous). Nothing written."
+    },
+    {
+      "check": "re-seeding leaves the page alone",
+      "result": "Passed",
+      "detail": "kept   home (already exists, not overwritten); kept   services (already exists, not overwritten); kept   contact (already exists, not overwritten)"
+    }
+  ]
+}

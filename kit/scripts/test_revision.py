@@ -1,17 +1,20 @@
 #!/usr/bin/env python3
 """Revision test: a bounded change request goes through without undoing an edit someone made in WordPress.
 
-Usage: python3 kit/scripts/test_revision.py <base_url> <out_dir>
-Needs a fresh local site started with `kit/scripts/serve.sh brannock <port> --qa`.
+Usage: python3 kit/scripts/test_revision.py <base_url> <spec.json> <out_dir>
+Needs a FRESH local site started with `kit/scripts/serve.sh <site> <port> --qa` (the test edits its pages).
+The spec (runs/<run>/revision-test.json) names the page, the editor edit, the change request, a stale request
+and an ambiguous request.
 
-1. A person edits the "visit" section in the block editor (driven by Playwright, through the real editor UI).
-2. Change request 1 is applied with kit/seed/revise.php to the "lead-time" section only.
-3. Checks: the person's edit is still there; the requested change is there; nothing else on the page moved;
-   WordPress kept a revision; a stale request on text the person already changed is refused and writes nothing;
-   re-running the seeder leaves the page alone.
-Writes <out_dir>/revision-test.json and <out_dir>/screens/editor-*.png.
+1. A person edits one paragraph in the block editor (Playwright typing in the real editor UI) and saves.
+2. The change request is applied with kit/seed/revise.php to another section.
+3. Checks: the person's edit is still there; the page now equals the edited page with exactly the requested text
+   replaced, nothing else; WordPress kept revisions; a stale request (text the person changed) and an ambiguous
+   request (text found more than once in the section) are refused and write nothing; re-seeding leaves the page alone.
+Writes <out_dir>/revision-test.json and before/after screenshots of the spec's sections in <out_dir>/screens/.
 """
 import difflib
+import html
 import http.cookiejar
 import json
 import sys
@@ -20,10 +23,12 @@ from pathlib import Path
 
 from playwright.sync_api import sync_playwright
 
-base, out = sys.argv[1].rstrip("/"), Path(sys.argv[2])
+base, spec, out = sys.argv[1].rstrip("/"), json.loads(Path(sys.argv[2]).read_text()), Path(sys.argv[3])
 (out / "screens").mkdir(parents=True, exist_ok=True)
 results = []
-opener = urllib.request.build_opener(urllib.request.HTTPCookieProcessor(http.cookiejar.CookieJar()))  # Playground logs in by cookie
+opener = urllib.request.build_opener(urllib.request.HTTPCookieProcessor(http.cookiejar.CookieJar()))
+HIDE = "#wpadminbar{display:none!important} html{margin-top:0!important}"
+slug = spec["page"]
 
 
 def runner(**payload):
@@ -37,72 +42,71 @@ def record(name, ok, detail):
     print(f"{'Passed' if ok else 'FAILED'}  {name}: {detail}")
 
 
-opener.open(base + "/", timeout=60).read()  # first request logs in and sets the cookie; POSTs come after
-page_id = runner(op="id", slug="home").strip()
-assert page_id.isdigit() and page_id != "0", f"no home page: {page_id!r}"
-seeded = runner(op="content", slug="home")
-revs0 = int(runner(op="revisions", slug="home"))
+def shoot(browser, tag):
+    page = browser.new_page(viewport={"width": 1440, "height": 900}, device_scale_factor=2)
+    page.goto(base + "/" + ("" if slug == "home" else slug + "/"), wait_until="networkidle")
+    page.add_style_tag(content=HIDE)
+    for a in spec["sections"]:
+        page.locator(f"[id='{a}']").screenshot(path=str(out / "screens" / f"revision-{tag}-{a}.png"))
+    page.close()
 
-# 1. A person edits one paragraph in the block editor.
+
+opener.open(base + "/", timeout=60).read()  # first request logs in and sets the cookie; POSTs come after
+page_id = runner(op="id", slug=slug).strip()
+assert page_id.isdigit() and page_id != "0", f"no page {slug}: {page_id!r}"
+revs0 = int(runner(op="revisions", slug=slug))
+
 with sync_playwright() as p:
     browser = p.chromium.launch()
+    shoot(browser, "before")
+
+    # 1. A person edits one paragraph in the block editor.
     page = browser.new_page(viewport={"width": 1440, "height": 900})
-    page.goto(base + "/wp-admin/", wait_until="networkidle")  # Playground logs in
+    page.goto(base + "/wp-admin/", wait_until="networkidle")
     page.goto(f"{base}/wp-admin/post.php?post={page_id}&action=edit", wait_until="networkidle")
     page.wait_for_timeout(1500)
     page.keyboard.press("Escape")  # the editor welcome guide, if it opens
-    for label in ("Close", "Get started"):
-        btn = page.get_by_role("button", name=label)
-        if btn.count() and btn.first.is_visible():
-            btn.first.click()
     canvas = page.frame_locator("iframe[name='editor-canvas']")
-    para = canvas.locator("p", has_text="Workshop visits by appointment, Monday to Friday.")
+    para = canvas.locator("p", has_text=spec["editor"]["paragraph_contains"]).first
     para.click()
-    page.keyboard.press("End")
-    for _ in range(len(" Friday.")):
-        page.keyboard.press("Backspace")
-    page.keyboard.type(" Saturday.")
+    page.keyboard.press("Meta+a")  # inside a paragraph: selects its text only
+    page.keyboard.type(spec["editor"]["new_text"])
     page.screenshot(path=str(out / "screens" / "editor-human-edit.png"))
     page.keyboard.press("Meta+s")
-    page.wait_for_timeout(2500)
+    page.wait_for_timeout(3000)
+    page.close()
+
+    after_human = runner(op="content", slug=slug)
+    record("person's edit saved through the block editor", spec["editor"]["check"] in after_human,
+           f"page now contains '{spec['editor']['check']}'")
+
+    # 2. The change request, bounded to one section.
+    c = spec["change"]
+    msg = runner(op="revise", slug=slug, anchor=c["anchor"], old=c["old"], new=c["new"]).strip()
+    after_cr = runner(op="content", slug=slug)
+    record("change request applied", msg.startswith("OK"), msg)
+    record("person's edit survived the change request", spec["editor"]["check"] in after_cr, spec["editor"]["check"])
+    old_e, new_e = html.escape(c["old"], quote=False), html.escape(c["new"], quote=False)
+    diff = [l for l in difflib.unified_diff(after_human.splitlines(), after_cr.splitlines(), lineterm="", n=0)
+            if l[:1] in "+-" and not l.startswith(("+++", "---"))]
+    only = (after_human.count(old_e) >= 1 and len(diff) == 2 and diff[0][1:].replace(old_e, new_e, 1) == diff[1][1:])
+    record("nothing else on the page changed", only, " | ".join(diff))
+    revs1 = int(runner(op="revisions", slug=slug))
+    record("WordPress kept revisions", revs1 >= revs0 + 2, f"{revs0} before, {revs1} after")
+
+    # 3. Refusals.
+    for kind in ("stale", "ambiguous"):
+        r = spec[kind]
+        m = runner(op="revise", slug=slug, anchor=r["anchor"], old=r["old"], new=r["new"]).strip()
+        same = runner(op="content", slug=slug) == after_cr
+        record(f"{kind} request refused, nothing written", m.startswith("REFUSED") and same, m)
+
+    # 4. Re-seeding.
+    seed_msg = runner(op="seed", dir=spec["seed_dir"]).strip()
+    record("re-seeding leaves the page alone", runner(op="content", slug=slug) == after_cr, seed_msg.replace("\n", "; "))
+
+    shoot(browser, "after")
     browser.close()
 
-after_human = runner(op="content", slug="home")
-record("person's edit saved through the block editor",
-       "Monday to Saturday" in after_human and "Monday to Friday" not in after_human,
-       "visit section now reads 'Monday to Saturday'")
-
-# 2. Change request 1, bounded to the lead-time section.
-msg = runner(op="revise", slug="home", anchor="lead-time", old="10 to 14", new="6 to 8").strip()
-after_cr = runner(op="content", slug="home")
-record("change request applied", msg.startswith("OK") and "6 to 8" in after_cr and "10 to 14" not in after_cr, msg)
-record("person's edit survived the change request", "Monday to Saturday" in after_cr, "still 'Monday to Saturday'")
-diff = [l for l in difflib.unified_diff(after_human.splitlines(), after_cr.splitlines(), lineterm="", n=0)
-        if l[:1] in "+-" and not l.startswith(("+++", "---"))]
-record("nothing else on the page changed", diff == ['-<p class="bd-figure">10 to 14</p>', '+<p class="bd-figure">6 to 8</p>'],
-       " | ".join(diff))
-revs1 = int(runner(op="revisions", slug="home"))
-record("WordPress kept revisions", revs1 >= revs0 + 2, f"{revs0} before, {revs1} after (one for the person's save, one for the change)")
-
-# 3. A stale request, written against the text before the person's edit.
-msg2 = runner(op="revise", slug="home", anchor="visit", old="Monday to Friday", new="Tuesday to Friday").strip()
-after_stale = runner(op="content", slug="home")
-record("stale request refused, nothing written", msg2.startswith("REFUSED") and after_stale == after_cr, msg2)
-
-# 4. Re-running the seeder does not overwrite the live page.
-seed_msg = runner(op="seed", dir="/wordpress/wp-content/kit-content/brannock").strip()
-after_seed = runner(op="content", slug="home")
-record("re-seeding leaves the page alone", after_seed == after_cr and "kept" in seed_msg, seed_msg)
-
-# 5. The public page shows both.
-with sync_playwright() as p:
-    browser = p.chromium.launch()
-    page = browser.new_page(viewport={"width": 1440, "height": 900})
-    page.goto(base + "/", wait_until="networkidle")
-    text = page.inner_text("main")
-    page.locator("#lead-time").screenshot(path=str(out / "screens" / "after-revision-lead-time.png"))
-    browser.close()
-record("public page shows both changes", "6 to 8" in text and "Monday to Saturday" in text, "front page rendered after the change")
-
-(out / "revision-test.json").write_text(json.dumps(results, indent=2) + "\n")
+(out / "revision-test.json").write_text(json.dumps({"spec": spec, "diff": diff, "results": results}, indent=2, ensure_ascii=False) + "\n")
 sys.exit(0 if all(r["result"] == "Passed" for r in results) else 1)

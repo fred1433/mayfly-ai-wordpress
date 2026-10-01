@@ -152,7 +152,7 @@
 .wp-block-button.is-style-outline > .wp-block-button__link { border: 1px solid currentColor; background: transparent; color: var(--wp--preset--color--navy); padding: calc(0.85rem - 1px) calc(1.5rem - 1px); }
 .wp-block-button.is-style-outline > .wp-block-button__link:hover { background: var(--wp--preset--color--navy); color: var(--wp--preset--color--mist); }
 a { text-decoration-thickness: 1px; text-underline-offset: 0.2em; }
-:focus-visible { outline: 2px solid var(--mf-orange); outline-offset: 3px; }
+:focus-visible { outline: 2px solid var(--wp--preset--color--navy); outline-offset: 3px; } /* navy: orange on Mist is 2.2:1, below the 3:1 a focus indicator needs */
 
 /* Quotes: Liam's words, set in the serif italic, no marks needed */
 .mf-quote { margin: 0; padding: 0; border: 0; }
@@ -172,9 +172,9 @@ a { text-decoration-thickness: 1px; text-underline-offset: 0.2em; }
 
 /* Small screens: the axis moves to the left edge, drawn by each row ------- */
 @media (max-width: 781px) {
-	:root { --mf-gap: 1.25rem; --mf-mark-w: min(300px, 74vw); }
+	:root { --mf-gap: 1.25rem; --mf-mark-w: min(190px, 48vw); }
 	.kit-frame::before { display: none; }
-	.kit-frame::after { left: calc(var(--mf-g) + 1px); }
+	.kit-frame::after { display: none; } /* the end point belongs to the desktop axis */
 	.kit-frame .mf-row:not(.mf-row--hero) { border-left: var(--mf-line) solid var(--mf-orange); }
 	.mf-row { grid-template-columns: 1fr; padding-left: var(--mf-gap); }
 	.mf-row > .mf-left { text-align: left; padding-right: 0; }

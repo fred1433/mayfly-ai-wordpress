@@ -1,0 +1,62 @@
+[
+  {
+    "case": "revise: repeated text is refused",
+    "result": "Passed",
+    "detail": "refused: in section #sec, the current text appears 2 times (ambiguous). Nothing written."
+  },
+  {
+    "case": "revise: inline link, text changed, address untouched",
+    "result": "Passed",
+    "detail": "changed section #sec on fx-link: \"services\" -> \"work\" (saved, read back, previous version kept as a revision)"
+  },
+  {
+    "case": "revise: escaped block attributes survive the save",
+    "result": "Passed",
+    "detail": "changed section #sec on fx-escaped: \"10 to 14\" -> \"6 to 8\" (saved, read back, previous version kept as a revision)"
+  },
+  {
+    "case": "control: an unslashed save strips the escapes (why the slashing matters)",
+    "result": "Passed",
+    "detail": "an unslashed save stored the class as: mf-rowu002du002dintro"
+  },
+  {
+    "case": "revise: text with an ampersand",
+    "result": "Passed",
+    "detail": "changed section #sec on fx-amp: \"Content & Channel\" -> \"Content & Social\" (saved, read back, previous version kept as a revision)"
+  },
+  {
+    "case": "revise: a failed write is reported as a failure",
+    "result": "Passed",
+    "detail": "failed: the save did not go through (Content, title, and excerpt are empty.). The page is unchanged."
+  },
+  {
+    "case": "revise: text outside the section, or no such section, is refused",
+    "result": "Passed",
+    "detail": "refused: in section #sec, the current text is not there (someone may have changed it). Nothing written. | refused: no section #nosuch on fx-scope. Nothing written."
+  },
+  {
+    "case": "seed: bad input stops the run before anything is created",
+    "result": "Passed",
+    "detail": "Unresolvable token {{url:nowhere}} in b.html"
+  },
+  {
+    "case": "seed: a missing file stops the run before anything is created",
+    "result": "Passed",
+    "detail": "missing.html not found"
+  },
+  {
+    "case": "seed: an interrupted creation is resumed on the next run",
+    "result": "Passed",
+    "detail": "resume fx-s3 (left unfinished by an earlier run); seeded fx-s3 from s3.html"
+  },
+  {
+    "case": "seed: a reseed keeps existing pages and the chosen front page",
+    "result": "Passed",
+    "detail": "kept   fx-s4 (already exists, not overwritten)"
+  },
+  {
+    "case": "seed: a first install sets the front page",
+    "result": "Passed",
+    "detail": "seeded fx-s5 from s5.html; front page set to fx-s5"
+  }
+]

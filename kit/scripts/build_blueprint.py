@@ -29,9 +29,9 @@ def common_tail(site):
             "<?php require '/wordpress/wp-load.php';"
             " foreach ( array( 'sample-page' ) as $s ) { $p = get_page_by_path( $s ); if ( $p ) { wp_delete_post( $p->ID, true ); } }"
             " $h = get_page_by_path( 'hello-world', OBJECT, 'post' ); if ( $h ) { wp_delete_post( $h->ID, true ); }"
+            " update_option( 'permalink_structure', '/%postname%/' ); flush_rewrite_rules();"
             f" $kit_seed_dir = '/wordpress/wp-content/kit-content/{site}';"
             " require '/wordpress/wp-content/kit/seed/seed.php';"
-            " update_option( 'permalink_structure', '/%postname%/' ); flush_rewrite_rules();"
         )},
     ]
 

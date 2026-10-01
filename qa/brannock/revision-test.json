@@ -1,42 +1,77 @@
-[
-  {
-    "check": "person's edit saved through the block editor",
-    "result": "Passed",
-    "detail": "visit section now reads 'Monday to Saturday'"
+{
+  "spec": {
+    "note": "Fictional business. The editor edit and the change request are recorded in sources/.",
+    "page": "home",
+    "editor": {
+      "paragraph_contains": "Workshop visits by appointment, Monday to Friday.",
+      "new_text": "Workshop visits by appointment, Monday to Saturday.",
+      "check": "Monday to Saturday"
+    },
+    "change": {
+      "anchor": "lead-time",
+      "old": "10 to 14",
+      "new": "6 to 8"
+    },
+    "stale": {
+      "anchor": "visit",
+      "old": "Monday to Friday",
+      "new": "Tuesday to Friday"
+    },
+    "ambiguous": {
+      "anchor": "how",
+      "old": "Thomastown",
+      "new": "Kilkenny"
+    },
+    "seed_dir": "/wordpress/wp-content/kit-content/brannock",
+    "sections": [
+      "lead-time",
+      "visit"
+    ]
   },
-  {
-    "check": "change request applied",
-    "result": "Passed",
-    "detail": "OK changed section #lead-time on home: \"10 to 14\" -> \"6 to 8\" (revision kept)"
-  },
-  {
-    "check": "person's edit survived the change request",
-    "result": "Passed",
-    "detail": "still 'Monday to Saturday'"
-  },
-  {
-    "check": "nothing else on the page changed",
-    "result": "Passed",
-    "detail": "-<p class=\"bd-figure\">10 to 14</p> | +<p class=\"bd-figure\">6 to 8</p>"
-  },
-  {
-    "check": "WordPress kept revisions",
-    "result": "Passed",
-    "detail": "1 before, 3 after (one for the person's save, one for the change)"
-  },
-  {
-    "check": "stale request refused, nothing written",
-    "result": "Passed",
-    "detail": "REFUSED refused: found the current text 0 times in section #visit (expected exactly 1). Nothing written."
-  },
-  {
-    "check": "re-seeding leaves the page alone",
-    "result": "Passed",
-    "detail": "kept   home (already exists, not overwritten)"
-  },
-  {
-    "check": "public page shows both changes",
-    "result": "Passed",
-    "detail": "front page rendered after the change"
-  }
-]
+  "diff": [
+    "-<p class=\"bd-figure\">10 to 14</p>",
+    "+<p class=\"bd-figure\">6 to 8</p>"
+  ],
+  "results": [
+    {
+      "check": "person's edit saved through the block editor",
+      "result": "Passed",
+      "detail": "page now contains 'Monday to Saturday'"
+    },
+    {
+      "check": "change request applied",
+      "result": "Passed",
+      "detail": "OK changed section #lead-time on home: \"10 to 14\" -> \"6 to 8\" (saved, read back, previous version kept as a revision)"
+    },
+    {
+      "check": "person's edit survived the change request",
+      "result": "Passed",
+      "detail": "Monday to Saturday"
+    },
+    {
+      "check": "nothing else on the page changed",
+      "result": "Passed",
+      "detail": "-<p class=\"bd-figure\">10 to 14</p> | +<p class=\"bd-figure\">6 to 8</p>"
+    },
+    {
+      "check": "WordPress kept revisions",
+      "result": "Passed",
+      "detail": "1 before, 3 after"
+    },
+    {
+      "check": "stale request refused, nothing written",
+      "result": "Passed",
+      "detail": "REFUSED refused: in section #visit, the current text is not there (someone may have changed it). Nothing written."
+    },
+    {
+      "check": "ambiguous request refused, nothing written",
+      "result": "Passed",
+      "detail": "REFUSED refused: in section #how, the current text appears 2 times (ambiguous). Nothing written."
+    },
+    {
+      "check": "re-seeding leaves the page alone",
+      "result": "Passed",
+      "detail": "kept   home (already exists, not overwritten)"
+    }
+  ]
+}

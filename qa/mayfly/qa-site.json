@@ -68,7 +68,7 @@
   {
     "check": "keyboard focus",
     "result": "Passed",
-    "scope": "first 12 Tab stops on the home page, desktop; admin toolbar stops ignored",
+    "scope": "first 12 Tab stops on the home page, desktop: they reach the menu (or the first content link) with a visible outline; admin toolbar ignored",
     "detail": "Skip to content > Mayfly Digital > Services > Process > About > Contact > Book a consultation > How we work > Integrated Digital Marketing Strategy > Performance Advertising & Analytics > Content & Channel Execution > AI Integration & Automation"
   },
   {
