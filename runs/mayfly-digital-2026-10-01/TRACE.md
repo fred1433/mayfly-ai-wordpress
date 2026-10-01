@@ -129,7 +129,7 @@ Times are Dublin time.
   WordPress kept revisions, a stale request was refused with nothing written, re-seeding left the page alone.
   Report: `qa/brannock/revision-test.json`.
 
-## Step 10. Publish (second build agent, 19:28 to 19:58)
+## Step 10. Publish (second build agent, 19:28 to 19:35)
 - Public repository created, `blueprint.json` built by `build_blueprint.py` with the theme pinned to commit
   `3dabb43`, WordPress 7.1, PHP 8.3.
 - **Opening the link failed**: Playground refused the blueprint (`writeFiles` needs `"resource": "literal:directory"`
