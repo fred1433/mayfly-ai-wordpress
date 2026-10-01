@@ -3,8 +3,9 @@
 An independent prototype made from Mayfly Digital's public material (mayflydigital.ie and liamdennehy.com),
 plus the process that produced it, packaged so it can be run again on another client's site.
 
-- **Open the WordPress site** (WordPress Playground, nothing to install, about a minute to start):
-  see the link in the release notes of the latest tag, or load `blueprint.json` in playground.wordpress.net.
+- **Open the WordPress site**: [Mayfly prototype in WordPress Playground](https://playground.wordpress.net/?blueprint-url=https%3A%2F%2Fraw.githubusercontent.com%2Ffred1433%2Fmayfly-ai-wordpress%2Fv1.0%2Fblueprint.json). WordPress runs in your browser,
+  editor included; nothing to install, about 10 seconds to start, nothing is saved on a server.
+  The fictional second client: [Brannock & Daughter in Playground](https://playground.wordpress.net/?blueprint-url=https%3A%2F%2Fraw.githubusercontent.com%2Ffred1433%2Fmayfly-ai-wordpress%2Fv1.0%2Fplayground%2Fbrannock.blueprint.json).
 - **Read how it was made**: [`runs/mayfly-digital-2026-10-01/TRACE.md`](runs/mayfly-digital-2026-10-01/TRACE.md),
   appended and committed during the run. `git log -p` on that file shows what was known at each point.
 - **See it reused**: a second, fictional client through the same kit,

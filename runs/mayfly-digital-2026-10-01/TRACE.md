@@ -128,3 +128,13 @@ Times are Dublin time.
   `revise.php` to another section. All eight checks passed: the edit survived, only the requested line changed,
   WordPress kept revisions, a stale request was refused with nothing written, re-seeding left the page alone.
   Report: `qa/brannock/revision-test.json`.
+
+## Step 10. Publish (second build agent, 19:28 to 19:58)
+- Public repository created, `blueprint.json` built by `build_blueprint.py` with the theme pinned to commit
+  `3dabb43`, WordPress 7.1, PHP 8.3.
+- **Opening the link failed**: Playground refused the blueprint (`writeFiles` needs `"resource": "literal:directory"`
+  in its file tree; the local runs never used that step). Fixed in `build_blueprint.py`; the public blueprint then
+  booted in the Playground CLI, then in the browser.
+- `kit/scripts/test_playground.py`: cold start in a clean profile, 9.1 s Chromium, 9.3 s WebKit, 9.4 s WebKit with an
+  iPhone 13 profile. One run each, on a fast line. Screenshots in `qa/mayfly/screens/playground-*.png`.
+- QA summary written to `qa/REPORT.md`. Tagged `v1.0`; the public links load the blueprint from that tag.
